@@ -14,25 +14,7 @@
 ## 🛠️ Tech Stack
 - **HTML/CSS/JS**: Clean UI and dynamic filtering.
 - **JSON + localStorage**: Stores internships and bookmarks.
-- **Netlify/GitHub Pages**: Free, fast deployment.
-
-## 📂 Project Structure
-internhub/
-
-├── index.html          # Main listing page
-
-├── tracker.html        # Bookmarked internships
-
-├── add-internship.html # Add custom internships
-
-├── style.css           # Styling with Inter font
-
-├── script.js           # Filtering, bookmarking, form logic
-
-├── data/
-│   └── internships.json # Predefined internships (e.g., xAI)
-
-└── README.md
+- **Netlify/GitHub Pages**: Free, fast deployment
 
 
 ## 🚀 Get Started
