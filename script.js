@@ -1,10 +1,16 @@
 // Load internships from JSON and localStorage
 async function loadInternships() {
-  const response = await fetch('./internships.json');
-  const jsonInternships = await response.json();
-  const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
-  const allInternships = [...jsonInternships, ...userInternships];
-  displayInternships(allInternships);
+  try {
+    const response = await fetch('./internships.json');
+    if (!response.ok) throw new Error(`Failed to fetch internships.json: ${response.status}`);
+    const jsonInternships = await response.json();
+    const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
+    const allInternships = [...jsonInternships, ...userInternships];
+    displayInternships(allInternships);
+  } catch (error) {
+    console.error('Error loading internships:', error);
+    alert('Failed to load internships. Check console for details.');
+  }
 }
 
 // Display internships (for index.html)
@@ -51,28 +57,34 @@ async function displayBookmarkedInternships() {
     return;
   }
 
-  const response = await fetch('./internships.json');
-  const jsonInternships = await response.json();
-  const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
-  const allInternships = [...jsonInternships, ...userInternships];
-  const bookmarkedInternships = allInternships.filter(internship => bookmarks.includes(internship.title));
+  try {
+    const response = await fetch('./internships.json');
+    if (!response.ok) throw new Error(`Failed to fetch internships.json: ${response.status}`);
+    const jsonInternships = await response.json();
+    const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
+    const allInternships = [...jsonInternships, ...userInternships];
+    const bookmarkedInternships = allInternships.filter(internship => bookmarks.includes(internship.title));
 
-  list.innerHTML = '';
-  bookmarkedInternships.forEach(internship => {
-    const card = document.createElement('div');
-    card.className = 'internship-card';
-    card.innerHTML = `
-      <h3>${internship.title}</h3>
-      <p>Role: ${internship.role}</p>
-      <p>Year: ${internship.year}</p>
-      <p>Tech: ${internship.tech.join(', ')}</p>
-      <p>Deadline: ${internship.deadline}</p>
-      <div>${internship.tags.map(tag => `<span class="tag tag-${tag.toLowerCase().replace(' ', '-')}">${tag}</span>`).join('')}</div>
-      <a href="${internship.applyLink}" class="apply-btn" target="_blank">Apply Now</a>
-      <button onclick="removeBookmark('${internship.title}')">Remove Bookmark</button>
-    `;
-    list.appendChild(card);
-  });
+    list.innerHTML = '';
+    bookmarkedInternships.forEach(internship => {
+      const card = document.createElement('div');
+      card.className = 'internship-card';
+      card.innerHTML = `
+        <h3>${internship.title}</h3>
+        <p>Role: ${internship.role}</p>
+        <p>Year: ${internship.year}</p>
+        <p>Tech: ${internship.tech.join(', ')}</p>
+        <p>Deadline: ${internship.deadline}</p>
+        <div>${internship.tags.map(tag => `<span class="tag tag-${tag.toLowerCase().replace(' ', '-')}">${tag}</span>`).join('')}</div>
+        <a href="${internship.applyLink}" class="apply-btn" target="_blank">Apply Now</a>
+        <button onclick="removeBookmark('${internship.title}')">Remove Bookmark</button>
+      `;
+      list.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Error loading bookmarked internships:', error);
+    alert('Failed to load bookmarked internships. Check console for details.');
+  }
 }
 
 // Remove bookmark
