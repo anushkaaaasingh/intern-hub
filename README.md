@@ -18,6 +18,7 @@
 
 ## 📂 Project Structure
 internhub/
+
 ├── index.html          # Main listing page
 
 ├── tracker.html        # Bookmarked internships
