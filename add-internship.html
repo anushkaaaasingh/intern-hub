@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InternHub - Add Internship</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>InternHub - Add Internship</h1>
+    <p>Share a new internship opportunity</p>
+    <a href="index.html">Back to Home</a> | <a href="tracker.html">My Tracker</a>
+  </header>
+  <section class="add-internship">
+    <form id="internship-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" required>
+      
+      <label for="role">Role:</label>
+      <input type="text" id="role" required>
+      
+      <label for="year">Year:</label>
+      <select id="year" required>
+        <option value="">Select Year</option>
+        <option value="1st">1st Year</option>
+        <option value="2nd">2nd Year</option>
+        <option value="3rd">3rd Year</option>
+      </select>
+      
+      <label for="tech">Tech (comma-separated):</label>
+      <input type="text" id="tech" placeholder="e.g., Python, DSA">
+      
+      <label for="tags">Tags (comma-separated):</label>
+      <input type="text" id="tags" placeholder="e.g., Remote, Female-only">
+      
+      <label for="deadline">Deadline (YYYY-MM-DD):</label>
+      <input type="date" id="deadline" required>
+      
+      <label for="applyLink">Apply Link:</label>
+      <input type="url" id="applyLink" required>
+      
+      <button type="submit">Add Internship</button>
+    </form>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>
