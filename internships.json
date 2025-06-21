@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Microsoft Engage",
+    "role": "SDE Intern",
+    "year": "2nd",
+    "tech": ["C++", "DSA"],
+    "tags": ["Remote", "Deadline Soon"],
+    "deadline": "2025-07-30",
+    "applyLink": "https://careers.microsoft.com/engage"
+  },
+  {
+    "title": "Google Summer Internship",
+    "role": "Data Science",
+    "year": "3rd",
+    "tech": ["Python", "ML"],
+    "tags": ["Female-only"],
+    "deadline": "2025-08-15",
+    "applyLink": "https://careers.google.com/intern"
+  },
+  {
+    "title": "xAI AI Research Intern",
+    "role": "AI Research Intern",
+    "year": "3rd",
+    "tech": ["Python", "Machine Learning"],
+    "tags": ["Remote", "AI"],
+    "deadline": "2025-08-15",
+    "applyLink": "https://x.ai/api"
+  }
+]
