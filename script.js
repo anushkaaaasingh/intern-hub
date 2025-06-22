@@ -1,7 +1,7 @@
 // Load internships from JSON and localStorage
 async function loadInternships() {
   try {
-    const response = await fetch('./internships.json');
+    const response = await fetch('/internships.json');
     if (!response.ok) throw new Error(`Failed to fetch internships.json: ${response.status}`);
     const jsonInternships = await response.json();
     const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
@@ -58,7 +58,7 @@ async function displayBookmarkedInternships() {
   }
 
   try {
-    const response = await fetch('./internships.json');
+    const response = await fetch('/internships.json');
     if (!response.ok) throw new Error(`Failed to fetch internships.json: ${response.status}`);
     const jsonInternships = await response.json();
     const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
