@@ -1,23 +1,25 @@
-// Load internships from JSON and localStorage
 async function loadInternships() {
   try {
     const response = await fetch('/internships.json');
     if (!response.ok) throw new Error(`Failed to fetch internships.json: ${response.status}`);
     const jsonInternships = await response.json();
     const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
-    const allInternships = [...jsonInternships, ...userInternships];
-    displayInternships(allInternships);
+    return [...jsonInternships, ...userInternships];
   } catch (error) {
     console.error('Error loading internships:', error);
     alert('Failed to load internships. Check console for details.');
+    return [];
   }
 }
 
-// Display internships (for index.html)
 function displayInternships(internships) {
   const list = document.getElementById('internship-list');
   if (!list) return;
   list.innerHTML = '';
+  if (internships.length === 0) {
+    list.innerHTML = '<p>No internships found.</p>';
+    return;
+  }
   internships.forEach(internship => {
     const card = document.createElement('div');
     card.className = 'internship-card';
@@ -35,7 +37,6 @@ function displayInternships(internships) {
   });
 }
 
-// Bookmark internship
 function bookmarkInternship(title) {
   let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
   if (!bookmarks.includes(title)) {
@@ -47,7 +48,6 @@ function bookmarkInternship(title) {
   }
 }
 
-// Display bookmarked internships (for tracker.html)
 async function displayBookmarkedInternships() {
   const list = document.getElementById('tracker-list');
   if (!list) return;
@@ -58,13 +58,8 @@ async function displayBookmarkedInternships() {
   }
 
   try {
-    const response = await fetch('/internships.json');
-    if (!response.ok) throw new Error(`Failed to fetch internships.json: ${response.status}`);
-    const jsonInternships = await response.json();
-    const userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
-    const allInternships = [...jsonInternships, ...userInternships];
+    const allInternships = await loadInternships();
     const bookmarkedInternships = allInternships.filter(internship => bookmarks.includes(internship.title));
-
     list.innerHTML = '';
     bookmarkedInternships.forEach(internship => {
       const card = document.createElement('div');
@@ -87,7 +82,6 @@ async function displayBookmarkedInternships() {
   }
 }
 
-// Remove bookmark
 function removeBookmark(title) {
   let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
   bookmarks = bookmarks.filter(t => t !== title);
@@ -96,12 +90,7 @@ function removeBookmark(title) {
   alert(`Removed ${title} from bookmarks.`);
 }
 
-// Filter internships
-function filterInternships(internships) {
-  const role = document.getElementById('role-filter')?.value || '';
-  const year = document.getElementById('year-filter')?.value || '';
-  const tag = document.getElementById('tag-filter')?.value || '';
-
+function filterInternships(internships, role, year, tag) {
   return internships.filter(internship => {
     return (
       (!role || internship.role === role) &&
@@ -111,11 +100,9 @@ function filterInternships(internships) {
   });
 }
 
-// Handle form submission (for add-internship.html)
 function setupForm() {
   const form = document.getElementById('internship-form');
   if (!form) return;
-
   form.addEventListener('submit', e => {
     e.preventDefault();
     const newInternship = {
@@ -127,7 +114,6 @@ function setupForm() {
       deadline: document.getElementById('deadline').value,
       applyLink: document.getElementById('applyLink').value
     };
-
     let userInternships = JSON.parse(localStorage.getItem('userInternships') || '[]');
     userInternships.push(newInternship);
     localStorage.setItem('userInternships', JSON.stringify(userInternships));
@@ -135,3 +121,57 @@ function setupForm() {
     form.reset();
   });
 }
+
+async function init() {
+  const internships = await loadInternships();
+  const roleFilter = document.getElementById('role-filter');
+  const yearFilter = document.getElementById('year-filter');
+  const tagFilter = document.getElementById('tag-filter');
+
+  if (roleFilter && yearFilter && tagFilter) {
+    // Initial display with current filter values
+    const filteredInternships = filterInternships(
+      internships,
+      roleFilter.value,
+      yearFilter.value,
+      tagFilter.value
+    );
+    displayInternships(filteredInternships);
+
+    // Event listeners for filters
+    roleFilter.addEventListener('change', () => {
+      const filtered = filterInternships(
+        internships,
+        roleFilter.value,
+        yearFilter.value,
+        tagFilter.value
+      );
+      displayInternships(filtered);
+    });
+
+    yearFilter.addEventListener('change', () => {
+      const filtered = filterInternships(
+        internships,
+        roleFilter.value,
+        yearFilter.value,
+        tagFilter.value
+      );
+      displayInternships(filtered);
+    });
+
+    tagFilter.addEventListener('change', () => {
+      const filtered = filterInternships(
+        internships,
+        roleFilter.value,
+        yearFilter.value,
+        tagFilter.value
+      );
+      displayInternships(filtered);
+    });
+  }
+
+  setupForm();
+  displayBookmarkedInternships();
+}
+
+init();
