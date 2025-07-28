@@ -26,4 +26,69 @@
     "deadline": "2025-08-15",
     "applyLink": "https://x.ai/api"
   }
+  [
+  {
+    "title": "TechBrein Cloud & DevOps Internship",
+    "role": "SDE Intern",
+    "year": "2nd",
+    "tech": ["Linux", "AWS", "Python", "Systems Programming"],
+    "tags": ["Hybrid", "Deadline Soon"],
+    "deadline": "2025-08-31",
+    "applyLink": "https://t.co/mK1DjAAeo2"
+  },
+  {
+    "title": "TCS Research Internship",
+    "role": "AI Research Intern",
+    "year": "3rd",
+    "tech": ["C/C++", "Python", "Linux", "Distributed Systems"],
+    "tags": ["AI", "Research"],
+    "deadline": "2025-09-30",
+    "applyLink": "https://www.tcs.com/careers/tcs-internship"
+  },
+  {
+    "title": "Infosys Winternship",
+    "role": "Data Science",
+    "year": "2nd",
+    "tech": ["Python", "Linux", "Data Analysis"],
+    "tags": ["Hybrid", "Data Science"],
+    "deadline": "2025-11-30",
+    "applyLink": "https://www.infosys.com/careers/instep.html"
+  },
+  {
+    "title": "Microsoft Software Engineer Internship",
+    "role": "SDE Intern",
+    "year": "3rd",
+    "tech": ["C/C++", "Linux", "Systems Programming"],
+    "tags": ["Remote", "Systems"],
+    "deadline": "2025-12-31",
+    "applyLink": "https://careers.microsoft.com"
+  },
+  {
+    "title": "NITI Aayog Data Internship",
+    "role": "Data Science",
+    "year": "2nd",
+    "tech": ["Python", "Linux", "Data Analysis"],
+    "tags": ["Government", "Data Science"],
+    "deadline": "2025-10-15",
+    "applyLink": "https://www.niti.gov.in/internship"
+  },
+  {
+    "title": "Google Software Engineering Internship",
+    "role": "SDE Intern",
+    "year": "3rd",
+    "tech": ["C++", "Linux", "Distributed Systems"],
+    "tags": ["Female-only", "AI"],
+    "deadline": "2025-08-15",
+    "applyLink": "https://careers.google.com/intern"
+  },
+  {
+    "title": "Red Hat Linux Development Internship",
+    "role": "SDE Intern",
+    "year": "3rd",
+    "tech": ["C", "Linux", "Kernel Programming"],
+    "tags": ["Remote", "Open Source"],
+    "deadline": "2025-09-15",
+    "applyLink": "https://www.redhat.com/en/jobs"
+  }
+]
 ]
